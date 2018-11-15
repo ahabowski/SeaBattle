@@ -13,9 +13,9 @@ import java.util.List;
 
 
 public class Board extends Parent {
-    private boolean enemy = false;
+    private boolean enemy ;
     private VBox rows = new VBox();
-    public int ships = 5;
+    public int ships = 10;
 
     public Board(boolean enemy, EventHandler<? super MouseEvent> handler) {
         this.enemy = enemy;
@@ -44,7 +44,7 @@ public class Board extends Parent {
         return false;
     }
     private boolean forifplaceShip(int xx, int yy, int length,Ship ship,boolean vertic){
-        Cell cell = null;
+        Cell cell;
         for (int i = yy; i < yy + length; i++) {
             if(vertic) {
                 cell = getCell(xx, i);
@@ -53,17 +53,17 @@ public class Board extends Parent {
             }
             cell.ship = ship;
             if (!enemy) {
-                if(ship.type == 5) {
+//                if(ship.type == 5) {
                     cell.setFill(Color.BLUE);
-                }else if(ship.type == 4){
-                    cell.setFill(Color.AQUA);
-                }else if(ship.type == 3){
-                    cell.setFill(Color.ORANGE);
-                }else if(ship.type == 2){
-                    cell.setFill(Color.AZURE);
-                }else if(ship.type == 1){
-                    cell.setFill(Color.LIGHTCYAN);
-                }
+//                }else if(ship.type == 4){
+//                    cell.setFill(Color.AQUA);
+//                }else if(ship.type == 3){
+//                    cell.setFill(Color.ORANGE);
+//                }else if(ship.type == 2){
+//                    cell.setFill(Color.AZURE);
+//                }else if(ship.type == 1){
+//                    cell.setFill(Color.LIGHTCYAN);
+                //               }
                 cell.setStroke(Color.GREEN);
             }
         }

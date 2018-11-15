@@ -15,7 +15,8 @@ import java.util.Random;
 public class NewGame {
     public NewPlayer playerPanel,enemyPanel;
     private boolean running = false;
-    private int shipsToPlace = 5;
+    private int shipsToPlace = 10;
+    private int shipLength = 4;
     private boolean vertical=true;
     private Random random = new Random();
     private boolean enemyTurn = false;
@@ -54,7 +55,10 @@ public class NewGame {
                 vertical=!vertical;
             }
             if (event.getButton() == MouseButton.PRIMARY) {
-                if (playerPanel.board.placeShip(new Ship(shipsToPlace, vertical), cell.x, cell.y)) {
+                if (playerPanel.board.placeShip(new Ship(shipLength, vertical), cell.x, cell.y)) {
+                    if (shipsToPlace == 10 || shipsToPlace == 8 || shipsToPlace == 5){
+                        shipLength--;
+                    }
                     if (--shipsToPlace == 0) {
                         startGame();
                     }
@@ -103,11 +107,17 @@ public class NewGame {
     }
     private void startGame() {
         // place enemy ships
-        int type = 5;
+        int type = 10;
+        shipLength = 4;
         while (type > 0) {
+            //System.out.println("type: " + type);
             int x = random.nextInt(10);
             int y = random.nextInt(10);
-            if (enemyPanel.board.placeShip(new Ship(type, Math.random() < 0.5), x, y)) {
+
+            if (enemyPanel.board.placeShip(new Ship(shipLength, Math.random() < 0.5), x, y)) {
+                if (type == 10 || type == 8 || type == 5){
+                    shipLength--;
+                }
                 type--;
             }
         }
