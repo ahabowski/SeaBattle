@@ -25,6 +25,7 @@ public class Cell extends Rectangle {
             ship.hit();
             setFill(Color.RED);
             if (!ship.isAlive()) {
+                NewGame.textArea.setText("Ship is dead!\n" + NewGame.textArea.getText());
                 board.ships--;
             }
             return true;
